@@ -39,6 +39,7 @@ export class ProgressCircle extends Component {
     style: PropTypes.any,
     strokeCap: PropTypes.oneOf(['butt', 'square', 'round']),
     textStyle: PropTypes.any,
+    textTopOffsetMultiplier: PropTypes.number,
     thickness: PropTypes.number,
     unfilledColor: PropTypes.string,
     endAngle: PropTypes.number,
@@ -55,6 +56,7 @@ export class ProgressCircle extends Component {
     size: 40,
     thickness: 3,
     endAngle: 0.9,
+    textTopOffsetMultiplier: 1,
     allowFontScaling: true,
   };
 
@@ -183,7 +185,7 @@ export class ProgressCircle extends Component {
             style={{
               position: 'absolute',
               left: textOffset,
-              top: textOffset,
+              top: this.props.textTopOffsetMultiplier * textOffset,
               width: textSize,
               height: textSize,
               borderRadius: textSize / 2,
