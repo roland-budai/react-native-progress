@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, ART, Easing } from 'react-native';
+import { Animated, Easing } from 'react-native';
+import { Surface as ARTSurface } from '@react-native-community/art';
 
 import Arc from './Shapes/Arc';
 
@@ -55,9 +56,9 @@ export default class CircleSnail extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    if (props.animating !== this.props.animating) {
-      if (props.animating) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.animating !== this.props.animating) {
+      if (this.props.animating) {
         this.animate();
         this.spin();
       } else {
@@ -157,7 +158,7 @@ export default class CircleSnail extends Component {
           },
         ]}
       >
-        <ART.Surface width={size} height={size}>
+        <ARTSurface width={size} height={size}>
           <AnimatedArc
             direction={
               direction === 'counter-clockwise'
@@ -172,7 +173,7 @@ export default class CircleSnail extends Component {
             strokeCap={strokeCap}
             strokeWidth={thickness}
           />
-        </ART.Surface>
+        </ARTSurface>
         {children}
       </Animated.View>
     );
